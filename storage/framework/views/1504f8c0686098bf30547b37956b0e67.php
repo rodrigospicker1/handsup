@@ -4,7 +4,7 @@
 
   <main class="main-content  mt-0">
     <section class="min-vh-100 mb-8">
-      <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('../assets/img/curved-images/curved14.jpg');">
+      <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background: -webkit-linear-gradient(90deg, #d8f3dc,#52b788,#1b4332);background: linear-gradient(90deg, #d8f3dc,#52b788,#1b4332);">
         <span class="mask bg-gradient-dark opacity-6"></span>
         <div class="container">
           <div class="row justify-content-center">
@@ -78,11 +78,11 @@
               <div class="card-body">
                 <form role="form text-left" action="<?php echo e(route('register')); ?>" method="POST">
                   <?php echo csrf_field(); ?>
-                  <div class="mb-3">
-                    <input type="text" name="name" class="form-control" placeholder="Nome" aria-label="Name" aria-describedby="email-addon">
+                  <div class="input-group mb-3">
+                      <input type="text" class="form-control" name="name" placeholder="Nome" aria-label="Username" aria-describedby="basic-addon1">
                   </div>
-                  <div class="mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                  <div class="input-group mb-3">
+                      <input type="text" class="form-control" name="email" placeholder="Email" >
                   </div>
                   <div class="mb-3">
                     <input type="password" name="password" class="form-control" placeholder="Senha" aria-label="Password" aria-describedby="password-addon">
@@ -91,9 +91,9 @@
                     <input type="password" name="password_confirmation" class="form-control" placeholder="Confirmação de senha" aria-label="Password" aria-describedby="password-addon">
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Criar conta</button>
+                    <button type="submit" class="btn w-100 mt-4 mb-0" style="background-color: #52B788; color:white">Criar conta</button>
                   </div>
-                  <p class="text-sm mt-3 mb-0">Já tem uma conta? <a href="/login" class="text-dark font-weight-bolder">Login</a></p>
+                  <p class="text-sm mt-3 mb-0">Já tem uma conta? <a href="/login" class="text-success font-weight-bolder">Login</a></p>
                 </form>
               </div>
             </div>
@@ -104,51 +104,13 @@
     <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
     <footer class="footer py-5">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mb-4 mx-auto text-center">
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Company
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              About Us
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Team
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Products
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Blog
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
-              Pricing
-            </a>
-          </div>
-          <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-              <span class="text-lg fab fa-dribbble"></span>
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-              <span class="text-lg fab fa-twitter"></span>
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-              <span class="text-lg fab fa-instagram"></span>
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-              <span class="text-lg fab fa-pinterest"></span>
-            </a>
-            <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
-              <span class="text-lg fab fa-github"></span>
-            </a>
-          </div>
-        </div>
+        
         <div class="row">
           <div class="col-8 mx-auto text-center mt-1">
             <p class="mb-0 text-secondary">
-              Copyright © <script>
+              Handsup © <script>
                 document.write(new Date().getFullYear())
-              </script> Soft by Creative Tim.
+              </script> .
             </p>
           </div>
         </div>
@@ -162,6 +124,27 @@
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
+    
+    const telefoneInput = document.getElementById('telefone');
+
+      telefoneInput.addEventListener('input', function (e) {
+      let valor = e.target.value.replace(/\D/g, '');
+      document.getElementById('phone').value = valor
+
+      if (valor.length > 11) valor = valor.slice(0, 11);
+
+      if (valor.length > 0) {
+        valor = valor.replace(/^(\d{2})(\d)/g, '($1) $2');
+      }
+      if (valor.length >= 10) {
+        valor = valor.replace(/(\d{5})(\d{4})$/, '$1-$2');
+      } else if (valor.length >= 6) {
+        valor = valor.replace(/(\d{4})(\d{0,4})$/, '$1-$2');
+      }
+
+      e.target.value = valor;
+    });
+
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
       var options = {

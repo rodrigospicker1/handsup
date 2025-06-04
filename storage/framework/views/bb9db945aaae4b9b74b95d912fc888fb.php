@@ -1,23 +1,24 @@
  <!-- Diz que esta página usa o layout -->
 
 <?php $__env->startSection('content'); ?>
+ 
 
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html " target="_blank">
-        <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold"></span>
+      <a class="navbar-brand m-0" href="<?php echo e(route('dashboard')); ?>" target="_blank" style="display: flex; justify-content:center; jus">
+        <img src="<?php echo e(asset('img/logo.png')); ?>" class="navbar-brand-img me-2" alt="main_logo">
+        <span class="ms-1 font-weight-bold fs-5 ml-2">HANDSUP</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link  active" href="<?php echo e(route('dashboard')); ?>">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+        <li class="nav-item" >
+          <a class="nav-link " href="<?php echo e(route('dashboard')); ?>" style="background-color: #40916C;color:white;border-radius:20px">
+            <div class="icon icon-shape icon-sm shadow border-radius-lg bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>shop </title>
+                <title>Home </title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1716.000000, -439.000000)" fill="#FFFFFF" fill-rule="nonzero">
                     <g transform="translate(1716.000000, 291.000000)">
@@ -44,48 +45,57 @@
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+        <nav aria-label="breadcrumb"> 
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5" >
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?php echo e(route('dashboard')); ?>">Pages</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
           </ol>
           <h6 class="font-weight-bolder mb-0">Dashboard</h6>
         </nav>
-        
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+            
+            <li class="nav-item d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <a class="dropdown-item border-radius-md" href="<?php echo e(route('logout')); ?>"><span class="d-sm-inline d-none">Sair</span></a>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
       </div>
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
+
+        <?php if(session('status_success')): ?>
+            <div class="alert alert-success" style="!background-image: none;">
+                <?php echo e(session('status_success')); ?>
+
+            </div>
+        <?php endif; ?>
+
       <div class="row">
         <div class="col-12">
           <div class="row">
 
             <div class="col-3">
               <div class="card">
-                <span class="mask bg-primary opacity-10 border-radius-lg"></span>
-                <div class="card-body p-3 position-relative">
-                  <div class="row">
-                    <div class="col-8 text-start">
-                      <div class="icon icon-shape bg-white shadow text-center border-radius-2xl">
-                        <i class="ni ni-circle-08 text-dark text-gradient text-lg opacity-10" aria-hidden="true"></i>
+                <span class="mask opacity-10 border-radius-lg"></span>
+                <div class="card-body p-3 position-relative" style="background-color: #B7E4C7; border-radius:10px">
+                  <div class="row" >
+                    <div class="col-8 text-start" style="width:auto">
+                      <div class="icon icon-shape bg-white shadow text-center border-radius-2xl" style="width:50%;display:flex;justify-content:center;align-items: center">
+                        <img src="<?php echo e(asset('img/checkmark.png')); ?>" style="width:65%;height:70%" alt="" srcset="">
                       </div>
                       <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                        1600
+                        <?php echo e($ativos); ?>
+
                       </h5>
-                      <span class="text-white text-sm">Users Active</span>
-                    </div>
-                    <div class="col-4">
-                      <div class="dropdown text-end mb-6">
-                        <a href="javascript:;" class="cursor-pointer" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="fa fa-ellipsis-h text-white"></i>
-                        </a>
-                        <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUsers1">
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                        </ul>
-                      </div>
-                      <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">+55%</p>
+                      <span class="text-white text-sm">Eventos Ativos</span>
                     </div>
                   </div>
                 </div>
@@ -94,29 +104,17 @@
             <div class="col-3 mt-4 mt-md-0">
               <div class="card">
                 <span class="mask bg-dark opacity-10 border-radius-lg"></span>
-                <div class="card-body p-3 position-relative">
+                <div class="card-body p-3 position-relative" style="background-color: #95D5B2; border-radius:10px">
                   <div class="row">
-                    <div class="col-8 text-start">
-                      <div class="icon icon-shape bg-white shadow text-center border-radius-2xl">
-                        <i class="ni ni-active-40 text-dark text-gradient text-lg opacity-10" aria-hidden="true"></i>
+                    <div class="col-8 text-start" style="width:auto">
+                      <div class="icon icon-shape bg-white shadow text-center border-radius-2xl" style="width:50%;display:flex;justify-content:center;align-items: center">
+                        <img src="<?php echo e(asset('img/bell.png')); ?>" style="width:60%;height:60%" alt="" srcset="">
                       </div>
                       <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                        357
+                        <?php echo e($incritos); ?>
+
                       </h5>
-                      <span class="text-white text-sm">Click Events</span>
-                    </div>
-                    <div class="col-4">
-                      <div class="dropstart text-end mb-6">
-                        <a href="javascript:;" class="cursor-pointer" id="dropdownUsers2" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="fa fa-ellipsis-h text-white"></i>
-                        </a>
-                        <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUsers2">
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                        </ul>
-                      </div>
-                      <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">+124%</p>
+                      <span class="text-white text-sm">Eventos Incritos</span>
                     </div>
                   </div>
                 </div>
@@ -125,29 +123,17 @@
             <div class="col-3">
               <div class="card">
                 <span class="mask bg-dark opacity-10 border-radius-lg"></span>
-                <div class="card-body p-3 position-relative">
+                <div class="card-body p-3 position-relative" style="background-color: #52B788; border-radius:10px">
                   <div class="row">
-                    <div class="col-8 text-start">
-                      <div class="icon icon-shape bg-white shadow text-center border-radius-2xl">
-                        <i class="ni ni-cart text-dark text-gradient text-lg opacity-10" aria-hidden="true"></i>
+                    <div class="col-8 text-start" style="width:auto">
+                      <div class="icon icon-shape bg-white shadow text-center border-radius-2xl" style="width:40%;display:flex;justify-content:center;align-items: center">
+                        <img src="<?php echo e(asset('img/racing-flag.png')); ?>" style="width:60%;height:60%" alt="" srcset="">
                       </div>
                       <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                        2300
+                        <?php echo e($concluidos); ?>
+
                       </h5>
-                      <span class="text-white text-sm">Purchases</span>
-                    </div>
-                    <div class="col-4">
-                      <div class="dropdown text-end mb-6">
-                        <a href="javascript:;" class="cursor-pointer" id="dropdownUsers3" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="fa fa-ellipsis-h text-white"></i>
-                        </a>
-                        <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUsers3">
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                        </ul>
-                      </div>
-                      <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">+15%</p>
+                      <span class="text-white text-sm">Eventos Concluídos</span>
                     </div>
                   </div>
                 </div>
@@ -156,29 +142,17 @@
             <div class="col-3 mt-4 mt-md-0">
               <div class="card">
                 <span class="mask bg-dark opacity-10 border-radius-lg"></span>
-                <div class="card-body p-3 position-relative">
+                <div class="card-body p-3 position-relative" style="background-color: #2D6A4F; border-radius:10px">
                   <div class="row">
-                    <div class="col-8 text-start">
-                      <div class="icon icon-shape bg-white shadow text-center border-radius-2xl">
-                        <i class="ni ni-like-2 text-dark text-gradient text-lg opacity-10" aria-hidden="true"></i>
+                    <div class="col-8 text-start" style="width:auto">
+                      <div class="icon icon-shape bg-white shadow text-center border-radius-2xl" style="width:40%;display:flex;justify-content:center;align-items: center">
+                        <img src="<?php echo e(asset('img/schedule.png')); ?>" style="width:60%;height:60%" alt="" srcset="">
                       </div>
                       <h5 class="text-white font-weight-bolder mb-0 mt-3">
-                        940
+                        <?php echo e($agendados); ?>
+
                       </h5>
-                      <span class="text-white text-sm">Likes</span>
-                    </div>
-                    <div class="col-4">
-                      <div class="dropstart text-end mb-6">
-                        <a href="javascript:;" class="cursor-pointer" id="dropdownUsers4" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i class="fa fa-ellipsis-h text-white"></i>
-                        </a>
-                        <ul class="dropdown-menu px-2 py-3" aria-labelledby="dropdownUsers4">
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                          <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                        </ul>
-                      </div>
-                      <p class="text-white text-sm text-end font-weight-bolder mt-auto mb-0">+90%</p>
+                      <span class="text-white text-sm" style="width:fit-content">Eventos Agendados</span>
                     </div>
                   </div>
                 </div>
@@ -190,13 +164,19 @@
         
       </div>
       <div class="row my-4">
+        
+        <div class="col-12 d-flex">
+          <a class="dropdown-item border-radius-md" href="<?php echo e(route('create_event')); ?>"><button type="button" style="background-color: #40916C;color:white" class="btn col-2">Criar evento</button></a>
+        </div>
+        
         <div class="col-12 mb-md-0 mb-4">
           <div class="card">
             <div class="card-header pb-0">
+              
               <div class="row">
 
                 <?php if(session('status_success')): ?>
-                    <div class="alert alert-success">
+                    <div class="alert alert-success" style="!background-image: none;">
                         <?php echo e(session('status_success')); ?>
 
                     </div>
@@ -204,7 +184,7 @@
                 
                 <?php if($errors->any()): ?>
                   <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="alert alert-secondary">
+                    <div class="alert alert-danger">
                         <?php echo e($error); ?>
 
                     </div>
@@ -213,7 +193,6 @@
 
                 <div class="col-12 d-flex">
                     <div class="col-1"><h6>Eventos</h6></div>
-                    <a class="dropdown-item border-radius-md" href="<?php echo e(route('create_event')); ?>"><button type="button" class="btn bg-gradient-dark col-2">Criar evento</button></a>
                   
                   
                 </div>
@@ -259,14 +238,19 @@
                               <?php endif; ?>
                             </td>
                             <td class="align-middle text-center text-sm">
-                              <form action="<?php echo e(route('subscribe_event')); ?>" method="POST">
+                              <?php if($event->is_subscribed): ?>
+                                <span class="badge bg-gradient-success">Inscrito</span>
+                              <?php else: ?>
+                                <form action="<?php echo e(route('subscribe_event')); ?>" method="POST">
                                   <?php echo csrf_field(); ?>
                                   <input type="hidden" name="user_id" value="<?php echo e($user_id); ?>">
                                   <input type="hidden" name="event_id" value="<?php echo e($event->id); ?>">
-                                  <button type="submit" class="dropdown-item border-radius-md">
+                                  <button type="submit" class="dropdown-item border-radius-md text-white p-1 bg-info">
                                       Inscrever em evento
                                   </button>
-                              </form>
+                                </form>
+                              <?php endif; ?>
+                              
                             </td>
                         </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
