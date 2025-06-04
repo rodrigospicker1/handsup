@@ -63,4 +63,29 @@ class EventController extends Controller
         }
     }
 
+    function subscribeEvent(Request $request)
+    {
+        $attributes = $request->validate([
+            'user_id' => 'required|integer|exists:users,id',
+            'event_id' => 'required|integer|exists:events,id',
+        ]);
+
+        try{
+            if(UserEvent::where('user_id', $attributes['user_id'])->where('event_id', $attributes['event_id'])->count() > 0){
+                return back()->withErrors(['message_error' => 'Você ja esta inscrito nesse evento']);
+            }
+
+            $event = Event::where('id', $attributes['event_id'])->first();
+
+            if( strtotime(date("Y-m-d")) > strtotime($event['date_event'])){
+                return back()->withErrors(['message_error' => 'Não é possível se inscrever em evento que ja tem prazo terminado']);
+            }
+
+            UserEvent::create($attributes);
+            
+            return back()->with(['status_success' => 'Parabéns! Você se inscreveu no evento']);
+        }catch (\Throwable $th) {
+            return back()->withErrors(['message_error' => 'Erro ao se inscrever no evento']);
+        }
+    }
 }
